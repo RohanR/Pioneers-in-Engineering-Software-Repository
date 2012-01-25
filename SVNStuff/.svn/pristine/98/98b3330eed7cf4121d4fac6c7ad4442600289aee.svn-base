@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+
+Project("{089BB4E0-A571-FC7C-2C7D-057DE9953C24}") = "PiEMOS_v0.21a", "Assembly-CSharp-firstpass-vs.csproj", "{A5A7AA7E-ED0A-DBA7-EBD9-383E15964168}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5A7AA7E-ED0A-DBA7-EBD9-383E15964168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5A7AA7E-ED0A-DBA7-EBD9-383E15964168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5A7AA7E-ED0A-DBA7-EBD9-383E15964168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5A7AA7E-ED0A-DBA7-EBD9-383E15964168}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	
+EndGlobal

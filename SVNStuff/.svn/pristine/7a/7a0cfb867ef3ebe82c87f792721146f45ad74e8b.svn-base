@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Core\InputManager.js">
+    <Files>
+      <File FileName="Assets\Core\InputManager.js" Line="95" Column="50" />
+      <File FileName="Assets\Core\InterfaceManager.js" Line="86" Column="32" />
+      <File FileName="Assets\Core\PacketManager.js" Line="88" Column="11" />
+      <File FileName="Assets\Core\FieldManager.js" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Controls\Scripts\MOMENTARY_BUTTON.js" Line="111" Column="2" />
+      <File FileName="Assets\Resources\Controls\Scripts\TOGGLE_BUTTON.js" Line="14" Column="1" />
+      <File FileName="Assets\Resources\Controls\Scripts\GAUGE.js" Line="8" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

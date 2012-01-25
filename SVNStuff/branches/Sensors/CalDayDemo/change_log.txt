@@ -1,0 +1,15 @@
+0.1a-->0.1b
+adding assembly files
+
+0.1b-->0.2a
+- Robot class changed.
+	- Slightly less lag per cycle
+- DigitalSwitch class added
+	- Constructor: DigitalSwitch(int portNum)
+	- Methods: bool Read()
+- ReflectanceSensor class added
+	- refer to Sensors wiki to see how other sensors are used. Same format for this.
+- MicroMaestro functionality added
+	- public float[] speeds; // accepts vals from 0 to 100, changes speed at which servo turns, with 0 slowest and 100 fastest
+	- public void KillActuators() // kills access to servos
+	- public void ReviveActoatrs() // restarts access to servos

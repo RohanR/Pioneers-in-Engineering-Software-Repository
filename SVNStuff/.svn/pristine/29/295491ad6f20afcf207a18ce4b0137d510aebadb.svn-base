@@ -1,0 +1,18 @@
+using System;
+using Microsoft.SPOT;
+
+namespace PiEAPI
+{
+    public abstract class SuperEncoder
+    {
+        private float dPerStep;
+        private float stepsPerRev;
+        public int steps;
+        public float distance;
+        public SuperEncoder(float distancePerStep, float stepsPerRevolution)
+        {
+            dPerStep=distancePerStep;
+            stepsPerRev = stepsPerRevolution;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+Robot superclass
+	- bool enable state
+	- bool auton state
+	- "collection" userControlledActuatorStates
+	- "collection" actuatorControllers
+	- "collection" sensorControllers
+	- Radio (XBee)
+
+ActuatorController Interface
+	- takes in Robot, so knows who to ask for actuator state info
+	- var usersActuatorsInfo: state info for its motors
+	- method that initializes motor to primary state (student code usage)
+	- method(s) that move(s) actuators based on given information (student code usage)
+	- method that automatically receive user controlled actuator state info (our code usage)
+		- this will update its var usersActuatorsInfo
+	- method that returns its var usersActuatorsInfo (student code usage)
+	- method that kills actuator (ours and student code usage)
+
+	Subclasses that follow interface:
+		- Sabertooth motor controller
+		- TReX motor controller
+
+		- MicroMaestro servo controller
+
+SensorController Interface
+	- variable(s) of sensor(s) collected info
+	- method that iniatialzes sensor to primary state (student code usage)
+	- method(s) that read(s) sensor(s) and updates its sensor variable (our code usage)
+		- we store the sensor state info in style we designate students to read
+	- method(s) that return sensor(s) state info *from its variable* (student code usage)
+	- method that kills sensor(s) (ours and student code usage)
+
+	Subclasses that follow interface:
+		- IR Range Finder
+		- IR Line Tracker
+		- Bumpers
+		- etc.
+
+Radio Interface		
+	- method that reads from UI and stores in Robot's userControlledActuatorStates (our code usage)
+	- method that reads from Field and stores important state information (our code usage)
+		- crucial information: enable state info and auton state info
+		- other information: info update about challenge on field (ie, action even open/closed)
+		- other information: score
+
+	Subclasses that follow interface:
+		- XBee Radio
+_______________________________________________
+Information flow: Game Controller --> UI --> XBee --> Robot state var --> ActuatorController var --> user code --> ActuatorController SetActuator method --> actuator moves
+
+Example usage:
+	create Robot
+	create Motor Controller, add to Robot
+	create XBee, add to Robot
+	create MoveFwd() method that moves robot forward when called
+		- requests motor information from Motor Controller
+		- assigns information to specific motor value
+		- sets motor to that value using Motor Controller's method

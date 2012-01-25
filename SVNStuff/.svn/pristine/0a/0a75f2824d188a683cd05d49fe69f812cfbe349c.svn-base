@@ -1,0 +1,37 @@
+Transfering files to robot:
+
+1. Make sure you have all drivers etc. installed, as well as TeraTerm.
+
+2. Connect robot to computer via USB cable.
+
+3. On the robot, hold down the LDR button and the reset button.  Release the reset button and hold down the LDR button until Device Manager recognizes the bot.
+
+4. Open up TeraTerm, select Serial (make sure the COM port is right) and hit OK.
+
+5. Press Shift+v to check the current firmware version.
+
+6. Press Shift+x to initiate a transfer.  Then go to File -> Transfer -> XMODEM -> Send
+
+7. Find the USBizi_CLR.ghi file and select it for transfer.
+
+8. Select the 1K option and then open the file.
+
+9. The transfer should then start and at the end it will inform you of file transfer success/failure.
+
+=============================================================
+
+Erasing all loaded programs (i.e. PiER) from robot:
+
+1. Make sure you have all drivers etc. installed, as well as TeraTerm.
+
+2. Connect robot to computer via USB cable.
+
+3. Open up MFDeploy.exe (should be in C:\Program Files\Microsoft .NET Micro Framework\v4.1\Tools or thereabouts)
+
+4. Select USB in the Device drop-down and you should see a device (the bot) pop up next to it
+
+5. Hit the Ping button to make sure the connection is established
+
+6. Hit the Erase button to erase all loaded programs
+
+=============================================================

@@ -1,0 +1,92 @@
+[Control]
+type=DUAL_AXIS
+name=Left Stick
+position=0,0
+x_input=joystick 1 axis 0
+y_input=joystick 1 axis 1
+x_invert=0
+y_invert=1
+
+
+
+[Control]
+type=DUAL_AXIS
+name=Right Stick
+position=320,0
+x_input=joystick 1 axis 2
+y_input=joystick 1 axis 3
+x_invert=0
+y_invert=1
+
+
+
+[Control]
+type=MOMENTARY_BUTTON
+name=Button 1
+position=-400,-219
+input=joystick 1 button 0
+
+[Control]
+type=TOGGLE_BUTTON
+name=Toggle 2
+position=-400,-283
+input=joystick 1 button 1
+
+[Control]
+type=TOGGLE_BUTTON
+name=Toggle 3
+position=-100,-240
+input=joystick 1 button 2
+
+[Control]
+type=MOMENTARY_BUTTON
+name=Button 4
+position=-100,-304
+input=joystick 1 button 3
+
+[Control]
+type=HORIZONTAL_GAUGE
+name=Gauge 2
+position=0,200
+input=mouse
+invert=0
+
+[Control]
+type=HORIZONTAL_GAUGE
+name=Gauge 1
+position=0,264
+input=telemetry.analog[1]
+invert=0
+
+[Control]
+type=CIRCULAR_GAUGE
+name=Gauge 3
+position=-320,0
+input=keyboard axis 1
+invert=1
+
+#DH is high  32bits of robot 64bit address
+#DL is lower 32bits of robot 64bit address
+[Packet]
+type=xbee
+DH=13A200
+DL=404B4BFE
+length=9
+0=Left Stick.x_output
+1=Left Stick.y_output
+2=Right Stick.x_output
+3=Right Stick.y_output
+5=Gauge 2.output
+6=Gauge 3.output
+7:0=Button 1.output
+7:1=Toggle 2.output
+7:2=Toggle 3.output
+7:7=Button 4.output
+
+#values are in Bytes, so a digital value of 1 will yield 8 digital entries
+[Telemetry]
+analog=7
+digital=1
+
+
+

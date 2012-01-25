@@ -1,0 +1,58 @@
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\le\PiEAPI.exe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\be\PiEAPI.exe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\le\PiEAPI.pdb
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\be\PiEAPI.pdb
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\PiEAPI.exe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\PiEAPI.pdb
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\le\PiEAPI.pe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\le\PiEAPI.pdbx
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\be\PiEAPI.pe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\be\PiEAPI.pdbx
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\LE\GHIElectronics.NETMF.Hardware.pe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\BE\GHIElectronics.NETMF.Hardware.pe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\LE\GHIElectronics.NETMF.Hardware.pdbx
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\BE\GHIElectronics.NETMF.Hardware.pdbx
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\GHIElectronics.NETMF.Hardware.dll
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\bin\Debug\GHIElectronics.NETMF.Hardware.xml
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\TinyCLR_DebugReferences.cache
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\FEZ_Panda_Application1.Resources.resources
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\FEZ_Panda_Application1.Resources.tinyresources
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\TinyResGen.cache
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\be\PiEAPI.pe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\be\PiEAPI.pdbx
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\le\PiEAPI.pe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\le\PiEAPI.pdbx
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\PiEAPI.exe
+C:\Users\Robbie\documents\visual studio 2010\Projects\PiEAPI\PiEAPI\obj\Debug\PiEAPI.pdb
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\le\PiEAPI.exe
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\be\PiEAPI.exe
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\le\PiEAPI.pdb
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\be\PiEAPI.pdb
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\PiEAPI.exe
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\PiEAPI.pdb
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\le\PiEAPI.pe
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\le\PiEAPI.pdbx
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\be\PiEAPI.pe
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\be\PiEAPI.pdbx
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\LE\GHIElectronics.NETMF.Hardware.pe
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\BE\GHIElectronics.NETMF.Hardware.pe
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\LE\GHIElectronics.NETMF.Hardware.pdbx
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\BE\GHIElectronics.NETMF.Hardware.pdbx
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\GHIElectronics.NETMF.Hardware.dll
+C:\Users\Robbie\Pie\branches\PiEAPI\bin\Debug\GHIElectronics.NETMF.Hardware.xml
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\TinyCLR_DebugReferences.cache
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\FEZ_Panda_Application1.Resources.resources
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\FEZ_Panda_Application1.Resources.tinyresources
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\TinyResGen.cache
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\be\PiEAPI.pe
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\be\PiEAPI.pdbx
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\le\PiEAPI.pe
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\le\PiEAPI.pdbx
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\PiEAPI.exe
+C:\Users\Robbie\Pie\branches\PiEAPI\obj\Debug\PiEAPI.pdb

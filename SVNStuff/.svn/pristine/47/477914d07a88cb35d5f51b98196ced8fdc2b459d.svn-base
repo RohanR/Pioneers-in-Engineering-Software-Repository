@@ -1,0 +1,97 @@
+/*
+ * University of California, Berkeley
+ * Pioneers in Engineering, Robotics Organizer.
+ * PiER Framework v2.a - 12/05/11
+*/
+
+using System;
+using System.Threading;
+using Microsoft.SPOT;
+using Microsoft.SPOT.Hardware;
+using GHIElectronics.NETMF.FEZ;
+using System.Text;
+using System.IO.Ports;
+
+namespace PiEAPI
+{
+    /// <summary>
+    /// Subclasses of this will control motor controllers
+    /// </summary>
+    abstract class MotorController : ActuatorController
+    {
+        private bool canMove;
+        private float speed;
+        private float brake;
+        private float brakeRange;
+        private float deadbandPos;
+        private float deadbandNeg;
+
+        //private long lastTicks; // for debugging (timing)?
+
+        /// <summary>
+        /// StudentCode should use only motorSpeed (-100 to 100) and motorBrake (0 to 10) to control motors
+        /// To move motors, first ensure motorBrake equals 0
+        /// </summary>
+        public abstract float motorSpeed
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Set the brake duty cycle of this Simple (0-10), where
+        /// 0 is no brake and 10 is max braking.
+        /// </summary>
+        public abstract float motorBrake
+        {
+            get;
+            set;
+        }
+
+
+        // TODO:
+        // these fields we decided to adjust to fit our PWM, braking requirements.
+        // discuss further, first.
+
+        public abstract float negativeZero
+        {
+            get;
+            set;
+        }
+
+        public abstract float positiveZero
+        {
+            get;
+            set;
+        }
+
+        public abstract float brakeRange
+        {
+            get;
+            set;
+        }
+
+        public abstract float brakePower
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// StudentCode should never call this. *Only* the Robot class will on its own.
+        /// </summary>
+        public abstract void UpdateActuators();
+
+        /// <summary>
+        /// Stops the motor and prevents it from driving until ReviveActuators() is called.
+        /// StudentCode can use this for fail-safety measures, etc.
+        /// </summary>
+        public abstract void KillActuators();
+
+        /// <summary>
+        /// StudentCode can use this to revive after killing. This will not affect disables sent
+        /// from the field or PiEMOS.
+        /// </summary>
+        public abstract void ReviveActuators();
+    }
+}

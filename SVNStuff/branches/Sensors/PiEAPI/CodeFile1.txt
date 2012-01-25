@@ -1,0 +1,11 @@
+﻿Slide 1 {
+    leftMotor.motorSpeed = 100;
+    rightMotor.motorSpeed = -50;
+}
+
+Slide 2  {
+    int fullReverse = -100;
+    int halfReverse = -50;
+
+    if(
+}

@@ -1,0 +1,40 @@
+Changes:
+
+- IMPORTANT: SoftwareServo requires you to install the patch found at
+http://www.ocf.berkeley.edu/~wangj/pie/files/SoftwareServo_patch.zip.
+Extract the ZIP into [your arduino directory]/hardware/.
+
+(This is the millisSet addon from http://www.curiousinventor.com/kits/roboduino
+with the SoftwareServo library removed. But read on:)
+
+- You MUST REMOVE any old SoftwareServo libraries. The software timeout
+requires the provided version of SoftwareServo.
+
+- For testing purposes, autonomous mode is enabled if button 10 (Start)
+is pressed. See dataLoop() for details. You must reset to exit this mode,
+as control data is no longer updated during autonomous.
+
+- Reading IR sensor values: See dataLoop() for an example.
+
+- Timeout (safety feature). If 120 ms elapses without a data packet, then
+the robot will zero its outputs and wait for a radio signal. Once it receives
+a radio signal, it will reset itself. DISABLING THE TIMEOUT DURING COMPETITION
+WILL RESULT IN DISQUALIFICATION.
+
+(The test interface, patch 2, will send a packet every 25ms. This allows 4
+dropped packets in a row before the robot shuts down.)
+
+- FYI:
+We were having intermittent dropouts with the radios. To fix this, the
+XBees need to be changed to "transparent serial mode" prior to the competition.
+In the meantime the old code will still work. To switch to transparent
+serial mode, define XBEE_TRANSPARENT_MODE in radio.h.
+
+- Tethered operation (in the *old* radio mode only). Select your Arduino's
+COM port from the test interface and bypass the radios altogether.
+
+- Competition control (in transparent serial mode only).
+
+- A two-byte hash field can be sent with the packet for a small measure of
+security during competition. This is enabled by defining the constant
+HASHCODE in radio.h. (Only works in transparent serial mode.)

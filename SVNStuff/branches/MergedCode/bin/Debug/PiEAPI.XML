@@ -1,0 +1,334 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FEZ Panda Application</name>
+    </assembly>
+    <members>
+        <member name="T:PiEAPI.ActuatorController">
+            <summary>
+            All actuator controllers have these methods.
+            *Only* the Robot class will call UpdateActuators() for each actuator when the actuators' states need updating
+            Both the Robot and StudentCode classes can call Kill/ReviveActuators when changing all actuators is necessary
+            </summary>
+        </member>
+        <member name="T:PiEAPI.I2CMotorController">
+            <summary>
+            This controls the Simple Motor Controller motor controllers
+            </summary>
+        </member>
+        <member name="M:PiEAPI.I2CMotorController.#ctor(PiEAPI.Robot,System.UInt16)">
+            <summary>
+            Ensure to instantiate the MicroMaestro with the Robot given to the student and the device num (probably 13 or 14)
+            This will take care of connecting the MicroMaestro to the robot's system
+            </summary>
+            <param name="robo"> The robot this Simple is connected to. </param>
+            <param name="deviceNum"> The device number of this Simple. </param>
+        </member>
+        <member name="M:PiEAPI.I2CMotorController.UpdateActuators">
+            <summary>
+            StudentCode should never call this. *Only* the Robot class will on its own.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.I2CMotorController.KillActuators">
+            <summary>
+            Stops the motor and prevents it from driving until ReviveActuators() is called.
+            StudentCode can use this for fail-safety measures, etc.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.I2CMotorController.ReviveActuators">
+            <summary>
+            StudentCode can use this to revive after killing. This will not affect disables sent
+            from the field or PiEMOS.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.I2CMotorController.motorSpeed">
+            <summary>
+            StudentCode should use only motorSpeed (-100 to 100) and motorBrake (0 to 10) to control motors
+            To move motors, first ensure motorBrake equals 0
+            </summary>
+        </member>
+        <member name="P:PiEAPI.I2CMotorController.motorBrake">
+            <summary>
+            Set the brake duty cycle of this Simple (0-10), where
+            0 is no brake and 10 is max braking.
+            </summary>
+        </member>
+        <member name="T:PiEAPI.SimpleMotorController">
+            <summary>
+            This controls the Simple Motor Controller motor controllers
+            </summary>
+        </member>
+        <member name="M:PiEAPI.SimpleMotorController.#ctor(PiEAPI.Robot,System.Int32)">
+            <summary>
+            Ensure to instantiate the MicroMaestro with the Robot given to the student and the device num (probably 13 or 14)
+            This will take care of connecting the MicroMaestro to the robot's system
+            </summary>
+            <param name="robo"> The robot this Simple is connected to. </param>
+            <param name="deviceNum"> The device number of this Simple. </param>
+        </member>
+        <member name="M:PiEAPI.SimpleMotorController.UpdateActuators">
+            <summary>
+            StudentCode should never call this. *Only* the Robot class will on its own.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.SimpleMotorController.KillActuators">
+            <summary>
+            Stops the motor and prevents it from driving until ReviveActuators() is called.
+            StudentCode can use this for fail-safety measures, etc.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.SimpleMotorController.ReviveActuators">
+            <summary>
+            StudentCode can use this to revive after killing. This will not affect disables sent
+            from the field or PiEMOS.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.SimpleMotorController.motorSpeed">
+            <summary>
+            StudentCode should use only motorSpeed (-100 to 100) and motorBrake (0 to 10) to control motors
+            To move motors, first ensure motorBrake equals 0
+            </summary>
+        </member>
+        <member name="P:PiEAPI.SimpleMotorController.motorBrake">
+            <summary>
+            Set the brake duty cycle of this Simple (0-10), where
+            0 is no brake and 10 is max braking.
+            </summary>
+        </member>
+        <member name="F:PiEAPI.StudentCode.robot">
+            <summary>
+            robot should be used to access *only* the properties fieldTime, canMove, isAutonomous, and isBlue
+            </summary>
+        </member>
+        <member name="F:PiEAPI.StudentCode.i2c1">
+            <summary>
+            These variables are examples of the use of ActuatorController variables
+            </summary>
+        </member>
+        <member name="M:PiEAPI.StudentCode.UserControlledCode">
+            <summary>
+            The robot will call this method every time it needs to run the user-controlled student code
+            The StudentCode should basically treat this as a chance to read all the new PiEMOS analog/digital values
+            and then use them to update the actuator states
+            </summary>
+        </member>
+        <member name="M:PiEAPI.StudentCode.AutonomousCode">
+            <summary>
+            The robot will call this method every time it needs to run the autonomous student code
+            The StudentCode should basically treat this as a chance to change motors and servos based on
+            non user-controlled input like sensors. But you don't need sensors, as this example demonstrates.
+            </summary>
+        </member>
+        <member name="T:PiEAPI.MicroMaestro">
+            <summary>
+            This controls the Micro Maestro servo controllers
+            </summary>
+        </member>
+        <member name="F:PiEAPI.MicroMaestro.minRotation">
+            <summary>
+            students can change all of these for each channel 0-5.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.MicroMaestro.#ctor(PiEAPI.Robot,System.Int32)">
+            <summary>
+            Ensure to instantiate the MicroMaestro with the Robot given to the student and the device num (probably 12)
+            This will take care of connecting the MicroMaestro to the robot's system
+            </summary>
+            <param name="robo"></param>
+            <param name="deviceNum"></param>
+        </member>
+        <member name="M:PiEAPI.MicroMaestro.UpdateActuators">
+            <summary>
+            StudentCode should never call this. *Only* the Robot class will on its own.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.MicroMaestro.KillActuators">
+            <summary>
+            StudentCode can use this for fail-safety measures, etc.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.MicroMaestro.ReviveActuators">
+            <summary>
+            StudentCode can use this to revive after killing. This will not affect field killing/revival
+            </summary>
+        </member>
+        <member name="T:PiEAPI.Encoder">
+            <summary>
+            Represents an encoder channel on the PiE Robot Controller.
+            </summary>
+            
+            Interfaces with the ATtiny2313A encoder counter chip on the
+            PiE External Board 2011 (rev 4), using the Pololu protocol.
+        </member>
+        <member name="M:PiEAPI.Encoder.#ctor(PiEAPI.Robot,System.Byte)">
+            <summary>
+            Initialize a quadrature encoder on the given channel.
+            </summary>
+            <param name="channel">encoder channel (0-3)</param>
+        </member>
+        <member name="M:PiEAPI.Encoder.#ctor(PiEAPI.Robot,System.Byte,System.Boolean)">
+            <summary>
+            Initialize a quadrature encoder on the given channel
+            in the given resolution mode.
+            
+            In double-resolution mode, both rising and falling edges on pin A
+            are counted.
+            In single-resolution mode, only rising edges on pin A are counted.
+            </summary>
+            <param name="channel">encoder channel (0-3)</param>
+            <param name="doubleResolution">true for double resolution, 
+                false for single resolution</param>
+        </member>
+        <member name="M:PiEAPI.Encoder.Read">
+            <summary>
+            Read the encoder count, an integer value representing 
+            total rotated distance.
+            </summary>
+            <returns>encoder count as a 32-bit signed int</returns>
+        </member>
+        <member name="M:PiEAPI.Encoder.Reset">
+            <summary>
+            Resets the encoder value to 0.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.Encoder.Speed">
+            <summary>
+            Returns encoder speed in counts per second.
+            Note that this method requires subsequent calls to be close in time
+            for accurate readings.
+            </summary>
+            <returns> Speed in ticks per second. </returns>
+        </member>
+        <member name="F:PiEAPI.Robot.actuators">
+            <summary>
+            List of actuator controllers on this robot
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:PiEAPI.Robot.i2c" -->
+        <member name="F:PiEAPI.Robot.ports">
+            <summary>
+            List of open communication ports on this robot
+            </summary>      
+        </member>
+        <member name="F:PiEAPI.Robot.radio">
+            <summary>
+            This robot's radio
+            </summary>
+        </member>
+        <member name="F:PiEAPI.Robot.student">
+            <summary>
+            This robot's user code class
+            </summary>
+        </member>
+        <member name="F:PiEAPI.Robot.shiftBrite">
+            <summary>
+            This robot's ShiftBrite
+            </summary>
+        </member>
+        <member name="F:PiEAPI.Robot.yellowLED">
+            <summary>
+            Port representation of the yellow LED pin.
+            </summary>
+        </member>
+        <member name="F:PiEAPI.Robot.redLED">
+            <summary>
+            Port representation of the red LED pin.
+            </summary>
+        </member>
+        <member name="M:PiEAPI.Robot.Main">
+            <summary>
+            Main method which initializes the robot, and creates
+            the radio's and student code's threads. Begins running
+            the threads, and then runs the robot thread indefinitely.
+            </summary>       
+        </member>
+        <member name="M:PiEAPI.Robot.RunStudent">
+            <summary>
+            Continually run student teleoperated code w/ yielding
+            </summary>
+        </member>
+        <member name="M:PiEAPI.Robot.RunAutono">
+            <summary>
+            Continually run student autonomous code w/ yielding
+            </summary>
+        </member>
+        <member name="M:PiEAPI.Robot.RunRFPoll">
+            <summary>
+            Continually run poll code in the radio class w/ yielding
+            </summary>
+        </member>
+        <member name="M:PiEAPI.Robot.RunRFTele">
+            <summary>
+            Continually run telemetry code in the radio class w/ yielding
+            </summary>
+        </member>
+        <member name="M:PiEAPI.Robot.#ctor(System.String,System.String)">
+            <summary>
+            Robot Constructor: initilizes variables
+            </summary>
+            <param name="teamID">Team ID</param>
+            <param name="radioComPort">Radio Com Port</param>
+        </member>
+        <member name="M:PiEAPI.Robot.Run">
+            <summary>
+            Robot Thread constantly calls this to update the actuator
+            values or kill them if necessary.
+            </summary>        
+        </member>
+        <member name="M:PiEAPI.Robot.KillActuators">
+            <summary>
+            Kills actuators; can be called by StudentCode or Robot thread
+            </summary>
+        </member>
+        <member name="M:PiEAPI.Robot.ReviveActuators">
+            <summary>
+            Revives actuators; can be called by StudentCode or Robot thread
+            </summary>
+        </member>
+        <member name="P:PiEAPI.Robot.fieldTime">
+            <summary>
+            current match time in seconds property with private set and public get.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.Robot.teamID">
+            <summary>
+            teamID property with private set and public get.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.Robot.scores">
+            <summary>
+            scores property that returns all teams scores.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.Robot.winningScore">
+            <summary>
+            winningScore property that returns the score needed to win.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.Robot.canMove">
+            <summary>
+            canMove property that returns true if the robot can move.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.Robot.isAutonomous">
+            <summary>
+            isAutonomous property that returns true if robot is in autonomous mode.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.Robot.isBlue">
+            <summary>
+            isAutonomous property that returns true if robot is blue team.
+            </summary>
+        </member>
+        <member name="P:PiEAPI.Robot.UIAnalogVals">
+            <summary>
+            UIAnalogVals property that returns the interface's analog values.
+            </summary> 
+        </member>
+        <member name="P:PiEAPI.Robot.UIDigitalVals">
+            <summary>
+            UIDigitalVals property that returns the interface's digital values.
+            </summary>
+        </member>
+    </members>
+</doc>

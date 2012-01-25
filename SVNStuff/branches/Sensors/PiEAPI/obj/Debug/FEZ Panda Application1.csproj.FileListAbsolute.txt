@@ -1,0 +1,29 @@
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\TinyCLR_DebugReferences.cache
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\FEZ_Panda_Application1.Resources.resources
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\FEZ_Panda_Application1.Resources.tinyresources
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\TinyResGen.cache
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\le\FEZ Panda Application.exe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\be\FEZ Panda Application.exe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\le\FEZ Panda Application.pdb
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\be\FEZ Panda Application.pdb
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\FEZ Panda Application.exe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\FEZ Panda Application.pdb
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\le\FEZ Panda Application.pe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\le\FEZ Panda Application.pdbx
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\be\FEZ Panda Application.pe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\be\FEZ Panda Application.pdbx
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\LE\GHIElectronics.NETMF.Hardware.pe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\BE\GHIElectronics.NETMF.Hardware.pe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\LE\GHIElectronics.NETMF.Hardware.pdbx
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\BE\GHIElectronics.NETMF.Hardware.pdbx
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\GHIElectronics.NETMF.Hardware.dll
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\bin\Debug\GHIElectronics.NETMF.Hardware.xml
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\be\FEZ Panda Application.pe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\be\FEZ Panda Application.pdbx
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\le\FEZ Panda Application.pe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\le\FEZ Panda Application.pdbx
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\FEZ Panda Application.exe
+C:\Users\Robbie\AppData\Local\Temporary Projects\FEZ Panda Application1\obj\Debug\FEZ Panda Application.pdb

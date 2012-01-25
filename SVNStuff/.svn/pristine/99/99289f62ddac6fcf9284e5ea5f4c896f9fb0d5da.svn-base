@@ -1,0 +1,387 @@
+
+
+
+
+/*
+ * University of California, Berkeley
+ * Pioneers in Engineering, Robotics Organizer.
+ * PiER Framework v0.2b - 04/14/11
+ * 
+ * Changelog:
+ * v0.2b
+ *  - Move teleoperated/autonomous checking from StudentCode.cs to robot threads
+ *  - Added heartbeat timeout
+*/
+
+using System;
+using System.Threading;
+using Microsoft.SPOT;
+using Microsoft.SPOT.Hardware;
+using System.IO.Ports;
+using System.Collections;
+using GHIElectronics.NETMF.FEZ;
+using A6281;
+using GHIElectronics.NETMF.Hardware;
+
+
+/*
+ *This is the main class of the robot. It starts program threads and manages device communication. 
+ *When in doubt, do not change this code! 
+ */
+namespace PiEAPI
+{
+    public class Robot
+    {
+        /// <summary>
+        /// List of actuator controllers on this robot
+        /// </summary>
+        public ArrayList actuators;
+        /// <summary>
+        // List of sensors on this robot       
+        /// </summary>
+        public ArrayList sensors;
+        /// <summary>
+        /// List of open communication ports on this robot
+        /// </summary>      
+        public ArrayList ports;
+        /// <summary>
+        /// This robot's radio
+        /// </summary>
+        public Radio_Series1 radio;
+        /// <summary>
+        /// This robot's user code class
+        /// </summary>
+        public StudentCode student;
+        /// <summary>
+        /// This robot's ShiftBrite
+        /// </summary>
+        public A6281.Single shiftBrite;
+
+        /// <summary>
+        /// current match time in seconds property with private set and public get.
+        /// </summary>
+        public int fieldTime { get; private set; }
+        /// <summary>
+        /// teamID property with private set and public get.
+        /// </summary>
+        public string teamID { get; private set; }
+        /// <summary>
+        /// scores property that returns all teams scores.
+        /// </summary>
+        public int[] scores { get; private set; }
+        /// <summary>
+        /// winningScore property that returns the score needed to win.
+        /// </summary>
+        public int winningScore { get; private set; }
+        /// <summary>
+        /// canMove property that returns true if the robot can move.
+        /// </summary>
+        public bool canMove { get; private set; }
+        /// <summary>
+        /// isAutonomous property that returns true if robot is in autonomous mode.
+        /// </summary>
+        public bool isAutonomous { get; private set; }
+        /// <summary>
+        /// isAutonomous property that returns true if robot is blue team.
+        /// </summary>
+        public bool isBlue { get; private set; }
+        /// <summary>
+        /// UIAnalogVals property that returns the interface's analog values.
+        /// </summary> 
+        public int[] UIAnalogVals { get; private set; }
+        /// <summary>
+        /// UIDigitalVals property that returns the interface's digital values.
+        /// </summary>
+        public bool[] UIDigitalVals { get; private set; }
+
+        // ShiftBrite Timer
+        private long shiftBriteTimer;
+        private static long shiftBritePeriod = 5000000;
+
+        // Heartbeat Timer
+        private long heartbeatTimer;
+        private static long heartbeatPeriod = 2 * 10000000;
+
+        /// <summary>
+        /// Port representation of the yellow LED pin.
+        /// </summary>
+        public OutputPort yellowLED;
+        /// <summary>
+        /// Port representation of the red LED pin.
+        /// </summary>
+        public OutputPort redLED;
+
+        // Threads
+        private Thread studentCodeThread;
+        private Thread autonomousThread;
+        private Thread rfPollThread;
+        private Thread rfTeleThread;
+
+        // Event Wait Handlers
+        // public ManualResetEvent scWait { get; private set; }	//studentcode
+        // public ManualResetEvent autoWait { get; private set; }	//autonomous
+
+        // Constants
+        private const int ROBOT_SLEEP_TIME = 0;
+        private const int STUDENT_SLEEP_TIME = 75;
+        private const int AUTONO_SLEEP_TIME = 0;
+        private const int RFPOLL_SLEEP_TIME = 0;
+        private const int RFTELE_SLEEP_TIME = 100;
+
+        /// <summary>
+        /// Main method which initializes the robot, and creates
+        /// the radio's and student code's threads. Begins running
+        /// the threads, and then runs the robot thread indefinitely.
+        /// </summary>       
+        public static void Main()
+        {
+            /*AnalogIn GyroX = new AnalogIn(AnalogIn.Pin.Ain0);
+            AnalogIn GyroZ = new AnalogIn(AnalogIn.Pin.Ain1);
+            AnalogIn AccelerometerX = new AnalogIn(AnalogIn.Pin.Ain2);
+            AnalogIn AccelerometerY = new AnalogIn(AnalogIn.Pin.Ain3);
+            AnalogIn AccelerometerZ = new AnalogIn(AnalogIn.Pin.Ain4);
+            while (true)
+            {
+                Thread.Sleep(250);
+                Debug.Print("GyroX: " + GyroX.Read());
+                Debug.Print("GyroZ: " + GyroZ.Read());
+                Debug.Print("AccelerometerX: " + AccelerometerX.Read());
+                Debug.Print("AccelerometerY: " + AccelerometerY.Read());
+                Debug.Print("AccelerometerZ: " + AccelerometerZ.Read());
+            }*/
+            
+            // Initialize robot
+            Robot robot = new Robot("1", "COM4");//com 4 orig. com 3 bec    ause of problem on top board.
+            robot.Auton(false);
+            robot.student = new StudentCode(robot);
+
+            // Create and set radio threads
+            robot.rfPollThread = new Thread(robot.RunRFPoll);
+            robot.rfPollThread.Priority = ThreadPriority.AboveNormal;
+            robot.rfTeleThread = new Thread(robot.RunRFTele);
+            robot.rfTeleThread.Priority = ThreadPriority.AboveNormal;
+
+            // Create and set student code threads
+            robot.studentCodeThread = new Thread(robot.RunStudent);
+            robot.studentCodeThread.Priority = ThreadPriority.AboveNormal;
+            robot.autonomousThread = new Thread(robot.RunAutono);
+            robot.autonomousThread.Priority = ThreadPriority.BelowNormal;
+
+            // Initialize LEDs
+            robot.yellowLED = new OutputPort((Cpu.Pin)FEZ_Pin.Digital.IO59, false);
+            robot.redLED = new OutputPort((Cpu.Pin)FEZ_Pin.Digital.IO60, false);
+
+            // Disable 
+            Debug.EnableGCMessages(false);
+
+            // Run the robot once to initialize
+            robot.Run();
+
+            // Set robot thread priority to AboveNormal
+            Thread.CurrentThread.Priority = ThreadPriority.AboveNormal;
+
+            // Start running all the threads
+            robot.rfPollThread.Start();
+            robot.rfTeleThread.Start();
+            robot.studentCodeThread.Start();
+            robot.autonomousThread.Start();
+            
+              
+            // Run robot supervisor code
+            while (true)
+            {
+                robot.Run();
+                Thread.Sleep(ROBOT_SLEEP_TIME);
+            }
+        }
+
+        /// <summary>
+        /// Continually run student teleoperated code w/ yielding
+        /// </summary>
+        private void RunStudent()
+        {
+            while (true)
+            {
+                if (this.isAutonomous == false)
+                {
+                    student.UserControlledCode();
+                    Thread.Sleep(STUDENT_SLEEP_TIME);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Continually run student autonomous code w/ yielding
+        /// </summary>
+        private void RunAutono()
+        {
+            while (true)
+            {
+                if (this.isAutonomous == true)
+                {
+                    student.AutonomousCode();
+                    Thread.Sleep(AUTONO_SLEEP_TIME);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Continually run poll code in the radio class w/ yielding
+        /// </summary>
+        private void RunRFPoll()
+        {
+            while (true)
+            {
+                radio.Poll();
+                Thread.Sleep(RFPOLL_SLEEP_TIME);
+            }
+        }
+
+        /// <summary>
+        /// Continually run telemetry code in the radio class w/ yielding
+        /// </summary>
+        private void RunRFTele()
+        {
+            while (true)
+            {
+                radio.Telemetry();
+                Thread.Sleep(RFTELE_SLEEP_TIME);
+            }
+        }
+
+        /// <summary>
+        /// Robot Constructor: initilizes variables
+        /// </summary>
+        /// <param name="teamID">Team ID</param>
+        /// <param name="radioComPort">Radio Com Port</param>
+        public Robot(string teamID, String radioComPort)
+        {
+            actuators = new ArrayList();
+            sensors = new ArrayList();
+            ports = new ArrayList();
+            canMove = true;
+            isAutonomous = false;
+            this.teamID = teamID;
+            radio = new Radio_Series1(this, radioComPort);
+
+            shiftBrite = new A6281.Single(Cpu.Pin.GPIO_NONE, (Cpu.Pin)FEZ_Pin.Digital.Di9, (Cpu.Pin)FEZ_Pin.Digital.Di10, SPI.SPI_module.SPI1);
+            shiftBrite.On = true;
+            shiftBriteTimer = 0;
+            shiftBrite.SetColorImmediate(700, 700, 700);
+
+            heartbeatTimer = DateTime.Now.Ticks;
+
+            // Set the team color for the shiftBrite
+            // Still to be implemented in 0.1c
+
+
+            // Make a deep copy of the UI values so they don't change mid-update
+            UIAnalogVals = (int[])radio.UIAnalogVals.Clone();
+            UIDigitalVals = (bool[])radio.UIDigitalVals.Clone();
+        }
+
+        // Set isAutonomous
+        public void Auton(bool b)
+        {
+            isAutonomous = b;
+        }
+
+        /// <summary>
+        /// Robot Thread constantly calls this to update the actuator
+        /// values or kill them if necessary.
+        /// </summary>        
+        private void Run()
+        {
+            bool prevCanMove = canMove;
+
+            lock (radio.radioLock)
+            {
+                // Make a deep copy of the radio values so they don't change mid-update
+                UIAnalogVals = (int[])radio.UIAnalogVals.Clone();
+                UIDigitalVals = (bool[])radio.UIDigitalVals.Clone();
+                fieldTime = radio.fieldTime;
+                canMove = radio.canMove;
+                isAutonomous = radio.isAutonomous;
+                isBlue = radio.isBlue;
+                heartbeatTimer = radio.lastUpdate;
+            }
+
+            // Check heartbeat time
+            if (DateTime.Now.Ticks - heartbeatTimer > heartbeatPeriod)
+            {
+                canMove = false;
+            }
+
+            //Update Team Color
+            if (isBlue)
+            {
+                shiftBrite.On = true;
+                shiftBrite.SetColorImmediate(650, 350, 0);
+            }
+            else
+            {
+                shiftBrite.On = true;
+                shiftBrite.SetColorImmediate(0, 0, 500);
+            }
+
+            //specifically revive actuators if field wanted to revive actuators.
+            if (!prevCanMove && canMove)
+            {
+                foreach (ActuatorController act in actuators)
+                {
+                    act.ReviveActuators(); // update each actuator's state using its actuator controller's "update actuators" method.
+                }
+            }
+
+
+            // kill or revive actuators based on the canMove bool
+            if (canMove == true)
+            {
+                foreach (ActuatorController act in actuators)
+                {
+                    act.UpdateActuators(); // update each actuator's state using its actuator controller's "update actuators" method.
+                }
+            }
+            else
+            {
+                foreach (ActuatorController act in actuators)
+                {
+                    act.KillActuators(); // if actuator is already killed, this will not do anything
+                }
+            }
+
+            if (isAutonomous)
+            {
+                if (DateTime.Now.Ticks >= shiftBriteTimer + shiftBritePeriod)
+                {
+                    shiftBrite.On = !shiftBrite.On;
+                    shiftBriteTimer = DateTime.Now.Ticks;
+                    shiftBrite.On = true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Kills actuators; can be called by StudentCode or Robot thread
+        /// </summary>
+        public void KillActuators()
+        {
+            foreach (ActuatorController act in actuators)
+            {
+                act.KillActuators();
+            }
+        }
+
+        /// <summary>
+        /// Revives actuators; can be called by StudentCode or Robot thread
+        /// </summary>
+        public void ReviveActuators()
+        {
+            foreach (ActuatorController act in actuators)
+            {
+                act.ReviveActuators();
+            }
+        }
+
+    }
+}
